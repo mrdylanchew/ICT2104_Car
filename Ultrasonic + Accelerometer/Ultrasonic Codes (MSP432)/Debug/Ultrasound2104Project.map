@@ -1,0 +1,282 @@
+******************************************************************************
+                  TI ARM Linker PC v18.12.4                    
+******************************************************************************
+>> Linked Thu Nov  3 21:59:53 2022
+
+OUTPUT FILE NAME:   <Ultrasound2104Project.out>
+ENTRY POINT SYMBOL: "_c_int00_noargs"  address: 00000959
+
+
+MEMORY CONFIGURATION
+
+         name            origin    length      used     unused   attr    fill
+----------------------  --------  ---------  --------  --------  ----  --------
+  MAIN                  00000000   00040000  00000bca  0003f436  R  X
+  INFO                  00200000   00004000  00000000  00004000  R  X
+  SRAM_CODE             01000000   00010000  00000000  00010000  RW X
+  SRAM_DATA             20000000   00010000  00000244  0000fdbc  RW  
+
+
+SEGMENT ALLOCATION MAP
+
+run origin  load origin   length   init length attrs members
+----------  ----------- ---------- ----------- ----- -------
+00000000    00000000    00000bd0   00000bd0    r-x
+  00000000    00000000    00000140   00000140    r-- .intvecs
+  00000140    00000140    000009d2   000009d2    r-x .text
+  00000b14    00000b14    00000070   00000070    r-- .const
+  00000b88    00000b88    00000048   00000048    r-- .cinit
+20000000    20000000    00000044   00000000    rw-
+  20000000    20000000    00000044   00000000    rw- .data
+2000fe00    2000fe00    00000200   00000000    rw-
+  2000fe00    2000fe00    00000200   00000000    rw- .stack
+
+
+SECTION ALLOCATION MAP
+
+ output                                  attributes/
+section   page    origin      length       input sections
+--------  ----  ----------  ----------   ----------------
+.intvecs   0    00000000    00000140     
+                  00000000    00000140     startup_msp432p401r_ccs.obj (.intvecs:retain)
+
+.text      0    00000140    000009d2     
+                  00000140    00000328     system_msp432p401r.obj (.text)
+                  00000468    0000024c     LAB4_Timer(02-11-2022).obj (.text)
+                  000006b4    000000b2     msp432p4xx_driverlib.lib : timer_a.o (.text:privateTimer_AProcessClockSourceDivider)
+                  00000766    0000009c     rtsv7M4_T_le_v4SPD16_eabi.lib : memcpy_t2.asm.obj (.text)
+                  00000802    00000068                                   : copy_decompress_lzss.c.obj (.text:decompress:lzss:__TI_decompress_lzss)
+                  0000086a    00000002     --HOLE-- [fill = 0]
+                  0000086c    00000064     msp432p4xx_driverlib.lib : interrupt.o (.text:Interrupt_enableInterrupt)
+                  000008d0    00000044                              : timer_a.o (.text:Timer_A_configureUpMode)
+                  00000914    00000044     rtsv7M4_T_le_v4SPD16_eabi.lib : autoinit.c.obj (.text:__TI_auto_init_nobinit_nopinit:__TI_auto_init_nobinit_nopinit)
+                  00000958    00000034                                   : boot_cortex_m.c.obj (.text:_c_int00_noargs:_c_int00_noargs)
+                  0000098c    00000030     msp432p4xx_driverlib.lib : gpio.o (.text:GPIO_setAsInputPinWithPullDownResistor)
+                  000009bc    00000024                              : gpio.o (.text:GPIO_setAsOutputPin)
+                  000009e0    00000020                              : gpio.o (.text:GPIO_interruptEdgeSelect)
+                  00000a00    0000001c                              : timer_a.o (.text:Timer_A_getCounterValue)
+                  00000a1c    0000001a                              : timer_a.o (.text:Timer_A_clearCaptureCompareInterrupt)
+                  00000a36    00000002     --HOLE-- [fill = 0]
+                  00000a38    00000018                              : gpio.o (.text:GPIO_clearInterruptFlag)
+                  00000a50    00000018                              : gpio.o (.text:GPIO_getInputPinValue)
+                  00000a68    00000018                              : gpio.o (.text:GPIO_setOutputLowOnPin)
+                  00000a80    00000014                              : gpio.o (.text:GPIO_enableInterrupt)
+                  00000a94    00000014                              : gpio.o (.text:GPIO_setOutputHighOnPin)
+                  00000aa8    00000012     startup_msp432p401r_ccs.obj (.text)
+                  00000aba    00000010     msp432p4xx_driverlib.lib : interrupt.o (.text:Interrupt_enableMaster)
+                  00000aca    00000002     --HOLE-- [fill = 0]
+                  00000acc    00000010                              : timer_a.o (.text:Timer_A_clearTimer)
+                  00000adc    0000000e     rtsv7M4_T_le_v4SPD16_eabi.lib : copy_decompress_none.c.obj (.text:decompress:none:__TI_decompress_none)
+                  00000aea    0000000c     msp432p4xx_driverlib.lib : cpu.o (.text:CPU_cpsie)
+                  00000af6    0000000c                              : timer_a.o (.text:Timer_A_stopTimer)
+                  00000b02    00000008                              : timer_a.o (.text:Timer_A_startCounter)
+                  00000b0a    00000004     rtsv7M4_T_le_v4SPD16_eabi.lib : pre_init.c.obj (.text:_system_pre_init)
+                  00000b0e    00000004                                   : exit.c.obj (.text:abort:abort)
+
+.const     0    00000b14    00000070     
+                  00000b14    00000040     msp432p4xx_driverlib.lib : interrupt.o (.const)
+                  00000b54    00000018     LAB4_Timer(02-11-2022).obj (.const:$P$T0$1)
+                  00000b6c    00000018     LAB4_Timer(02-11-2022).obj (.const:$P$T1$2)
+
+.cinit     0    00000b88    00000048     
+                  00000b88    00000037     (.cinit..data.load) [load image, compression = lzss]
+                  00000bbf    00000001     --HOLE-- [fill = 0]
+                  00000bc0    00000008     (__TI_handler_table)
+                  00000bc8    00000008     (__TI_cinit_table)
+
+.init_array 
+*          0    00000000    00000000     UNINITIALIZED
+
+.data      0    20000000    00000044     UNINITIALIZED
+                  20000000    00000030     msp432p4xx_driverlib.lib : gpio.o (.data:GPIO_PORT_TO_BASE)
+                  20000030    0000000d     LAB4_Timer(02-11-2022).obj (.data)
+                  2000003d    00000003     --HOLE--
+                  20000040    00000004     system_msp432p401r.obj (.data)
+
+.stack     0    2000fe00    00000200     UNINITIALIZED
+                  2000fe00    00000004     rtsv7M4_T_le_v4SPD16_eabi.lib : boot_cortex_m.c.obj (.stack)
+                  2000fe04    000001fc     --HOLE--
+
+MODULE SUMMARY
+
+       Module                        code   ro data   rw data
+       ------                        ----   -------   -------
+    .\
+       system_msp432p401r.obj        808    0         4      
+       LAB4_Timer(02-11-2022).obj    588    48        13     
+       startup_msp432p401r_ccs.obj   18     320       0      
+    +--+-----------------------------+------+---------+---------+
+       Total:                        1414   368       17     
+                                                             
+    C:/Users/Donovan/Downloads/msp432_driverlib_3_21_00_05/driverlib/MSP432P4xx/ccs/msp432p4xx_driverlib.lib
+       timer_a.o                     336    0         0      
+       gpio.o                        228    0         48     
+       interrupt.o                   116    64        0      
+       cpu.o                         12     0         0      
+    +--+-----------------------------+------+---------+---------+
+       Total:                        692    64        48     
+                                                             
+    C:\ti\ccs930\ccs\tools\compiler\ti-cgt-arm_18.12.4.LTS\lib\rtsv7M4_T_le_v4SPD16_eabi.lib
+       memcpy_t2.asm.obj             156    0         0      
+       copy_decompress_lzss.c.obj    104    0         0      
+       autoinit.c.obj                68     0         0      
+       boot_cortex_m.c.obj           52     0         0      
+       copy_decompress_none.c.obj    14     0         0      
+       exit.c.obj                    4      0         0      
+       pre_init.c.obj                4      0         0      
+    +--+-----------------------------+------+---------+---------+
+       Total:                        402    0         0      
+                                                             
+       Stack:                        0      0         512    
+       Linker Generated:             0      71        0      
+    +--+-----------------------------+------+---------+---------+
+       Grand Total:                  2508   503       577    
+
+
+LINKER GENERATED COPY TABLES
+
+__TI_cinit_table @ 00000bc8 records: 1, size/record: 8, table size: 8
+	.data: load addr=00000b88, load size=00000037 bytes, run addr=20000000, run size=00000044 bytes, compression=lzss
+
+
+LINKER GENERATED HANDLER TABLE
+
+__TI_handler_table @ 00000bc0 records: 2, size/record: 4, table size: 8
+	index: 0, handler: __TI_decompress_lzss
+	index: 1, handler: __TI_decompress_none
+
+
+GLOBAL SYMBOLS: SORTED ALPHABETICALLY BY Name 
+
+address   name                                  
+-------   ----                                  
+00000b0f  C$$EXIT                               
+00000aeb  CPU_cpsie                             
+00000a39  GPIO_clearInterruptFlag               
+00000a81  GPIO_enableInterrupt                  
+00000a51  GPIO_getInputPinValue                 
+000009e1  GPIO_interruptEdgeSelect              
+0000098d  GPIO_setAsInputPinWithPullDownResistor
+000009bd  GPIO_setAsOutputPin                   
+00000a95  GPIO_setOutputHighOnPin               
+00000a69  GPIO_setOutputLowOnPin                
+00000469  Initalise_Ultrasound                  
+0000086d  Interrupt_enableInterrupt             
+00000abb  Interrupt_enableMaster                
+00000521  PORT2_IRQHandler                      
+UNDEFED   PORT3_IRQHandler                      
+20000040  SystemCoreClock                       
+00000141  SystemCoreClockUpdate                 
+000003b5  SystemInit                            
+000004f9  TA0_0_IRQHandler                      
+00000507  TA1_0_IRQHandler                      
+00000a1d  Timer_A_clearCaptureCompareInterrupt  
+00000acd  Timer_A_clearTimer                    
+000008d1  Timer_A_configureUpMode               
+00000a01  Timer_A_getCounterValue               
+00000b03  Timer_A_startCounter                  
+00000af7  Timer_A_stopTimer                     
+4000480c  WDTCTL_SYM                            
+20010000  __STACK_END                           
+00000200  __STACK_SIZE                          
+00000bc8  __TI_CINIT_Base                       
+00000bd0  __TI_CINIT_Limit                      
+00000bc0  __TI_Handler_Table_Base               
+00000bc8  __TI_Handler_Table_Limit              
+00000915  __TI_auto_init_nobinit_nopinit        
+00000803  __TI_decompress_lzss                  
+00000add  __TI_decompress_none                  
+ffffffff  __TI_pprof_out_hndl                   
+ffffffff  __TI_prof_data_size                   
+ffffffff  __TI_prof_data_start                  
+00000000  __TI_static_base__                    
+00000767  __aeabi_memcpy                        
+00000767  __aeabi_memcpy4                       
+00000767  __aeabi_memcpy8                       
+ffffffff  __binit__                             
+ffffffff  __c_args__                            
+UNDEFED   __mpu_init                            
+2000fe00  __stack                               
+00000959  _c_int00_noargs                       
+UNDEFED   _system_post_cinit                    
+00000b0b  _system_pre_init                      
+00000b0f  abort                                 
+ffffffff  binit                                 
+000005c3  calculateWallDetected                 
+000004f7  doNothing                             
+2000003c  haveWall                              
+00000000  interruptVectors                      
+0000062b  main                                  
+00000767  memcpy                                
+00000609  sendTriggerToUltrasound               
+20000030  ultrasonicIntTimes                    
+00000629  wallDetected                          
+
+
+GLOBAL SYMBOLS: SORTED BY Symbol Address 
+
+address   name                                  
+-------   ----                                  
+00000000  __TI_static_base__                    
+00000000  interruptVectors                      
+00000141  SystemCoreClockUpdate                 
+00000200  __STACK_SIZE                          
+000003b5  SystemInit                            
+00000469  Initalise_Ultrasound                  
+000004f7  doNothing                             
+000004f9  TA0_0_IRQHandler                      
+00000507  TA1_0_IRQHandler                      
+00000521  PORT2_IRQHandler                      
+000005c3  calculateWallDetected                 
+00000609  sendTriggerToUltrasound               
+00000629  wallDetected                          
+0000062b  main                                  
+00000767  __aeabi_memcpy                        
+00000767  __aeabi_memcpy4                       
+00000767  __aeabi_memcpy8                       
+00000767  memcpy                                
+00000803  __TI_decompress_lzss                  
+0000086d  Interrupt_enableInterrupt             
+000008d1  Timer_A_configureUpMode               
+00000915  __TI_auto_init_nobinit_nopinit        
+00000959  _c_int00_noargs                       
+0000098d  GPIO_setAsInputPinWithPullDownResistor
+000009bd  GPIO_setAsOutputPin                   
+000009e1  GPIO_interruptEdgeSelect              
+00000a01  Timer_A_getCounterValue               
+00000a1d  Timer_A_clearCaptureCompareInterrupt  
+00000a39  GPIO_clearInterruptFlag               
+00000a51  GPIO_getInputPinValue                 
+00000a69  GPIO_setOutputLowOnPin                
+00000a81  GPIO_enableInterrupt                  
+00000a95  GPIO_setOutputHighOnPin               
+00000abb  Interrupt_enableMaster                
+00000acd  Timer_A_clearTimer                    
+00000add  __TI_decompress_none                  
+00000aeb  CPU_cpsie                             
+00000af7  Timer_A_stopTimer                     
+00000b03  Timer_A_startCounter                  
+00000b0b  _system_pre_init                      
+00000b0f  C$$EXIT                               
+00000b0f  abort                                 
+00000bc0  __TI_Handler_Table_Base               
+00000bc8  __TI_CINIT_Base                       
+00000bc8  __TI_Handler_Table_Limit              
+00000bd0  __TI_CINIT_Limit                      
+20000030  ultrasonicIntTimes                    
+2000003c  haveWall                              
+20000040  SystemCoreClock                       
+2000fe00  __stack                               
+20010000  __STACK_END                           
+4000480c  WDTCTL_SYM                            
+ffffffff  __TI_pprof_out_hndl                   
+ffffffff  __TI_prof_data_size                   
+ffffffff  __TI_prof_data_start                  
+ffffffff  __binit__                             
+ffffffff  __c_args__                            
+ffffffff  binit                                 
+UNDEFED   PORT3_IRQHandler                      
+UNDEFED   __mpu_init                            
+UNDEFED   _system_post_cinit                    
+
+[61 symbols]
