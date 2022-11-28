@@ -11,3 +11,5 @@ https://m5stack.oss-cn-shenzhen.aliyuncs.com/resource/arduino/package_m5stack_in
 9. Proceed with I2C communications
 10. A video showing how to use Blynk with the features can be accessed via:
 https://drive.google.com/file/d/1WsZUfWp8A4PrX5rma2xbqw-oVvab1X_j/view?usp=share_link
+11. A video presentation can be accessed at this link:
+https://drive.google.com/file/d/1dC0iGa4j2NgphLqklKRHQkQ-yaUPwlzX/view?usp=share_link

@@ -10,5 +10,7 @@ https://m5stack.oss-cn-shenzhen.aliyuncs.com/resource/arduino/package_m5stack_in
 7. Connect M5StickCPlus to USB port and upload wifi_m5_msp.ino
 8. Login to Blynk with username: zongwei123@hotmail.com password: 2104car567
 9. Proceed with UART communications
-10. A video showing how to use Blynk with the features can be accessed via:
+10. A demo video of features can be found at this link:
 https://drive.google.com/file/d/1WsZUfWp8A4PrX5rma2xbqw-oVvab1X_j/view?usp=share_link
+11. A video presentation can be accessed at this link:
+https://drive.google.com/file/d/1dC0iGa4j2NgphLqklKRHQkQ-yaUPwlzX/view?usp=share_link
