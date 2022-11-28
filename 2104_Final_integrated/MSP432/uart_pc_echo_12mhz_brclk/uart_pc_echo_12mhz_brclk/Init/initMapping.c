@@ -658,17 +658,6 @@ void printGraph(struct Graph* graph) {
 void initMap(void) {
 
     struct Graph* graph = createGraph(20);
-    addEdge(graph, 0, 1);
-    addEdge(graph, 1, 2);
-    addEdge(graph, 2, 3);
-    addEdge(graph, 3, 4);
-    addEdge(graph, 4, 9);
-    addEdge(graph, 9, 13);
-    addEdge(graph, 13, 12);
-    addEdge(graph, 12, 11);
-
-
-
 
 //    addEdge(graph, 1, 6);
 //    addEdge(graph, 6,11);
