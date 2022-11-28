@@ -37,14 +37,14 @@
  * COM used is described as "XDS110 Class Application/User UART".
  * Check your device manager to find out which COM port is used, e.g. COM3
  *
- *                           MSP432P401
- *                         -----------------
- *     M5STICKC 3.3V   <--|3.3V             |
- *      M5STICKC GND   <--|GND              |
- *         M5STICKC G33<--|P3.2             |
- *         M5STICKC G32<--|P3.3             |
- *                        |                 |
- *                        |                 |
+ *               MSP432P401
+ *             -----------------
+ *            |                 |
+ *            |                 |
+ *       RST -|     P1.3/UCA0TXD|----> PC
+ *            |                 |
+ *            |     P1.2/UCA0RXD|<---- PC
+ *            |                 |
  *
  *******************************************************************************/
 /* DriverLib Includes */
@@ -63,8 +63,10 @@ int sendSpeed(unsigned int speed);
 int sendBarcode(unsigned char barcode);
 int sendDistancetravelled(unsigned int distance);
 int sendHeight(unsigned int height);
+
 void itoa_z();
 void sendVariable(unsigned int variable, unsigned char* key);
+
 
 
 //![Simple UART Config]
@@ -88,8 +90,7 @@ const eUSCI_UART_Config uartConfig =
         EUSCI_A_UART_OVERSAMPLING_BAUDRATE_GENERATION,  // Oversampling
 };
 
-// Simulated values that will be sent from MSP432 to M5STICKCPLUS (UART)
-// M5STICKCPLUS will then transmit these values to blynk dashboard (WIFI)
+//simulated values that will be displayed in blynk dashboard
 int SPEED = 30;
 int DISTANCE_TRAVELLED = 10;
 int HEIGHT_OF_HUMP = 2;
@@ -100,21 +101,20 @@ unsigned char* MAP_ROW_2 ="*5->6->7->8->9*" ;
 unsigned char* MAP_ROW_3 ="*10->11->12->13->14*" ;
 unsigned char* MAP_ROW_4 ="*15->16->17->18->19*" ;
 
+
 int main(void)
 {
     /* Halting WDT  */
     WDT_A_holdTimer();
 
-    /* Setting P1.0 as output and turning on red LED*/
+    /* Set port 1 pin0 as output */
     GPIO_setAsOutputPin(GPIO_PORT_P1, GPIO_PIN0);
     GPIO_setOutputHighOnPin(GPIO_PORT_P1, GPIO_PIN0);
 
     GPIO_setAsOutputPin(GPIO_PORT_P2, GPIO_PIN2);
     GPIO_setOutputHighOnPin(GPIO_PORT_P2, GPIO_PIN2);
 
-    /* Configuring P1.1 as an input and enabling interrupts
-     * Pressing P1.1 will trigger "Latency test"
-     * */
+    /* Configuring P1.1 as an input and enabling interrupts */
     MAP_GPIO_setAsInputPinWithPullUpResistor(GPIO_PORT_P1, GPIO_PIN1);
     MAP_GPIO_clearInterruptFlag(GPIO_PORT_P1, GPIO_PIN1);
     MAP_GPIO_enableInterrupt(GPIO_PORT_P1, GPIO_PIN1);
@@ -124,8 +124,11 @@ int main(void)
     MAP_GPIO_enableInterrupt(GPIO_PORT_P1, GPIO_PIN4);
     MAP_Interrupt_enableInterrupt(INT_PORT1);
 
-    // Configure P3.2 (RX) and P3.3 (TX) are UART pins
+    // P3.2 (RX) and P3.3 (TX) are UART pins
     GPIO_setAsPeripheralModuleFunctionInputPin(GPIO_PORT_P3, GPIO_PIN2 | GPIO_PIN3, GPIO_PRIMARY_MODULE_FUNCTION);
+
+    /* Selecting P1.2 and P1.3 in UART mode */
+    // GPIO_setAsPeripheralModuleFunctionInputPin(GPIO_PORT_P1, GPIO_PIN2 | GPIO_PIN3, GPIO_PRIMARY_MODULE_FUNCTION);
 
     /* Configuring UART Module */
     UART_initModule(EUSCI_A2_BASE, &uartConfig);
@@ -158,61 +161,65 @@ void uPrintf(unsigned char * TxArray)
 
 /* EUSCI A2 UART ISR
  * When ISR triggers, reads the value from UART P3.2 RX Line.
- * When buttons on Blynk dash board pressed, M5STICKC will send a key to MSP432
- * Keys will map to a particular switch case, and will send the appropriate variables
- * MSP432 will send a key and the requested value back to blynk
- * The key send by MSP432 determines the type of virtual pin to display on blynk
+ * If value recieved corresponds to a key, exectue the respective case.
  * */
 void EUSCIA2_IRQHandler(void)
+
 {
     unsigned char key = 0;
     key = UART_receiveData(EUSCI_A2_BASE);
     switch(key)
     {
-        case 'S': // Speed flag
+        case 'S':
             printf("Calling send speed function\n");
             sendSpeed(SPEED);
             break;
-        case 'H': // height flag
+        case 'H':
             printf("Calling send height function\n");
             sendHeight(HEIGHT_OF_HUMP);
             break;
-        case 'D': // distance travelled flag
+        case 'D':
             printf("Calling send distance function \n");
             sendDistancetravelled(DISTANCE_TRAVELLED);
             break;
-        case 'B': // barcode flag
+        case 'B':
             printf("Calling send barcode function\n");
             uPrintf("B");
             uPrintf(BARCODE_VALUE);
             break;
-        case 'I': // move car flag, invoke moveCar(10); here pending motor team
+        case 'I':
             uPrintf("I");
             printf("Calling move car function\n");
             break;
-        case 'P': // view shortest path flag
+        case 'P':
              uPrintf("P");
              uPrintf(SHORTEST_PATH);
              break;
-        case 'M': // start mapping flag
+        case 'M':
             uPrintf("M");
             printf("Calling start mapping\n");
             break;
-        case 'V': // view map flag
+
+        case 'V':
            uPrintf("V");
-           printf("Sending Map information\n");
            uPrintf(MAP_ROW_1);
            uPrintf(MAP_ROW_2);
            uPrintf(MAP_ROW_3);
            uPrintf(MAP_ROW_4);
+           printf("Sending Map information\n");
            break;
-        case 'T': // Triggers latency test
+
+
+        case 'T':
            uPrintf("T");
+           // Send 2 to Blynk
            uPrintf("2");
            break;
-        case 'R': // Reset dashboard flag
+        case 'R':
            uPrintf("R");
+           // Send 2 to Blynk
            break;
+
     }
 }
 
@@ -291,8 +298,8 @@ void PORT1_IRQHandler(void)
             //toggle led output on pin 1.0
             GPIO_toggleOutputOnPin(GPIO_PORT_P1, GPIO_PIN0);
         }
-
-    /*Set button P1.4 as reset button, pressing P1.4 will reset the blynk dashboard*/
+   // if interrupted by switch 1.4 do the following
+    // if interrupted by switch 1.4 do the following
         if(status & GPIO_PIN4)
         {
             uPrintf("R");
@@ -301,11 +308,8 @@ void PORT1_IRQHandler(void)
 
 }
 
-//
 void itoa_z(long unsigned int value, char* result, int base)
-{
-    // itoa_z() formats long unsigned int to char* values for UART uPrintf() transmission
-    // https://e2e.ti.com/support/tools/code-composer-studio-group/ccs/f/code-composer-studio-forum/841718/stdlib-h-itoa
+  {
     // check that the base if valid
     if (base < 2 || base > 36) { *result = '\0';}
 

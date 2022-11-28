@@ -12,6 +12,6 @@
 	<createSlaveProjects value=""/>
 	<ignoreDefaultDeviceSettings value="true"/>
 	<templateProperties value="id=gpio_toggle_output.projectspec.gpio_toggle_output"/>
-	<origin value="C:\Users\zongw\Desktop\msp432_driverlib_3_21_00_05\examples\MSP432P4xx\gpio\gpio_toggle_output\ccs\gpio_toggle_output.projectspec"/>
+	<origin value="C:/Users/zongw/Downloads/MSP432_Comms/MSP432_Comms"/>
 	<filesToOpen value="gpio_toggle_output.c"/>
 </projectOptions>
