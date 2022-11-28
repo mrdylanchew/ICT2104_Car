@@ -1,0 +1,294 @@
+******************************************************************************
+                  TI ARM Linker PC v18.12.4                    
+******************************************************************************
+>> Linked Thu Sep 15 22:57:23 2022
+
+OUTPUT FILE NAME:   <Lab3.out>
+ENTRY POINT SYMBOL: "_c_int00_noargs"  address: 00000aa9
+
+
+MEMORY CONFIGURATION
+
+         name            origin    length      used     unused   attr    fill
+----------------------  --------  ---------  --------  --------  ----  --------
+  MAIN                  00000000   00040000  00000dac  0003f254  R  X
+  INFO                  00200000   00004000  00000000  00004000  R  X
+  SRAM_CODE             01000000   00010000  00000000  00010000  RW X
+  SRAM_DATA             20000000   00010000  00000238  0000fdc8  RW  
+
+
+SEGMENT ALLOCATION MAP
+
+run origin  load origin   length   init length attrs members
+----------  ----------- ---------- ----------- ----- -------
+00000000    00000000    00000db0   00000db0    r-x
+  00000000    00000000    00000140   00000140    r-- .intvecs
+  00000140    00000140    00000bd4   00000bd4    r-x .text
+  00000d14    00000d14    00000040   00000040    r-- .const
+  00000d58    00000d58    00000058   00000058    r-- .cinit
+20000000    20000000    00000038   00000000    rw-
+  20000000    20000000    00000034   00000000    rw- .data
+  20000034    20000034    00000004   00000000    rw- .bss
+2000fe00    2000fe00    00000200   00000000    rw-
+  2000fe00    2000fe00    00000200   00000000    rw- .stack
+
+
+SECTION ALLOCATION MAP
+
+ output                                  attributes/
+section   page    origin      length       input sections
+--------  ----  ----------  ----------   ----------------
+.intvecs   0    00000000    00000140     
+                  00000000    00000140     startup_msp432p401r_ccs.obj (.intvecs:retain)
+
+.text      0    00000140    00000bd4     
+                  00000140    00000328     system_msp432p401r.obj (.text)
+                  00000468    000001a0     msp432p4xx_driverlib.lib : pcm.o (.text:__PCM_setPowerStateAdvanced)
+                  00000608    000000dc                              : pcm.o (.text:__PCM_setPowerModeAdvanced)
+                  000006e4    000000b0                              : pcm.o (.text:__PCM_setCoreVoltageLevelAdvanced)
+                  00000794    0000009c     gpio_toggle_output.obj (.text)
+                  00000830    0000009c     rtsv7M4_T_le_v4SPD16_eabi.lib : memcpy_t2.asm.obj (.text)
+                  000008cc    0000007c     msp432p4xx_driverlib.lib : pcm.o (.text:PCM_gotoLPM3)
+                  00000948    00000068     rtsv7M4_T_le_v4SPD16_eabi.lib : copy_decompress_lzss.c.obj (.text:decompress:lzss:__TI_decompress_lzss)
+                  000009b0    00000064     msp432p4xx_driverlib.lib : interrupt.o (.text:Interrupt_enableInterrupt)
+                  00000a14    00000050                              : pcm.o (.text:PCM_shutdownDevice)
+                  00000a64    00000044     rtsv7M4_T_le_v4SPD16_eabi.lib : autoinit.c.obj (.text:__TI_auto_init_nobinit_nopinit:__TI_auto_init_nobinit_nopinit)
+                  00000aa8    00000034                                   : boot_cortex_m.c.obj (.text:_c_int00_noargs:_c_int00_noargs)
+                  00000adc    00000030     msp432p4xx_driverlib.lib : gpio.o (.text:GPIO_getEnabledInterruptStatus)
+                  00000b0c    00000030                              : gpio.o (.text:GPIO_setAsInputPinWithPullUpResistor)
+                  00000b3c    0000002c                              : pcm.o (.text:PCM_getCoreVoltageLevel)
+                  00000b68    0000002a                              : pcm.o (.text:PCM_getPowerMode)
+                  00000b92    00000002     --HOLE-- [fill = 0]
+                  00000b94    00000028                              : pcm.o (.text:PCM_gotoLPM0)
+                  00000bbc    00000024                              : gpio.o (.text:GPIO_setAsOutputPin)
+                  00000be0    00000024                              : rtc_c.o (.text:RTC_C_holdClock)
+                  00000c04    0000001c     rtsv7M4_T_le_v4SPD16_eabi.lib : copy_zero_init.c.obj (.text:decompress:ZI:__TI_zero_init_nomemset:__TI_zero_init_nomemset)
+                  00000c20    00000018     msp432p4xx_driverlib.lib : gpio.o (.text:GPIO_clearInterruptFlag)
+                  00000c38    00000018                              : wdt_a.o (.text:WDT_A_holdTimer)
+                  00000c50    00000014                              : gpio.o (.text:GPIO_enableInterrupt)
+                  00000c64    00000014                              : gpio.o (.text:GPIO_setOutputHighOnPin)
+                  00000c78    00000014                              : gpio.o (.text:GPIO_toggleOutputOnPin)
+                  00000c8c    00000012     startup_msp432p401r_ccs.obj (.text)
+                  00000c9e    00000002     --HOLE-- [fill = 0]
+                  00000ca0    00000010     msp432p4xx_driverlib.lib : gpio.o (.text:GPIO_getInterruptStatus)
+                  00000cb0    00000010                              : interrupt.o (.text:Interrupt_enableMaster)
+                  00000cc0    00000010                              : pcm.o (.text:PCM_gotoLPM4)
+                  00000cd0    0000000e     rtsv7M4_T_le_v4SPD16_eabi.lib : copy_decompress_none.c.obj (.text:decompress:none:__TI_decompress_none)
+                  00000cde    0000000c     msp432p4xx_driverlib.lib : cpu.o (.text:CPU_cpsie)
+                  00000cea    00000002     --HOLE-- [fill = 0]
+                  00000cec    0000000c                              : pcm.o (.text:PCM_getPowerState)
+                  00000cf8    00000008                              : pcm.o (.text:PCM_setPowerMode)
+                  00000d00    00000008                              : pcm.o (.text:PCM_setPowerState)
+                  00000d08    00000004                              : cpu.o (.text:CPU_wfi)
+                  00000d0c    00000004     rtsv7M4_T_le_v4SPD16_eabi.lib : pre_init.c.obj (.text:_system_pre_init)
+                  00000d10    00000004                                   : exit.c.obj (.text:abort:abort)
+
+.const     0    00000d14    00000040     
+                  00000d14    00000040     msp432p4xx_driverlib.lib : interrupt.o (.const)
+
+.cinit     0    00000d58    00000058     
+                  00000d58    0000002f     (.cinit..data.load) [load image, compression = lzss]
+                  00000d87    00000001     --HOLE-- [fill = 0]
+                  00000d88    0000000c     (__TI_handler_table)
+                  00000d94    00000004     --HOLE-- [fill = 0]
+                  00000d98    00000008     (.cinit..bss.load) [load image, compression = zero_init]
+                  00000da0    00000010     (__TI_cinit_table)
+
+.init_array 
+*          0    00000000    00000000     UNINITIALIZED
+
+.data      0    20000000    00000034     UNINITIALIZED
+                  20000000    00000030     msp432p4xx_driverlib.lib : gpio.o (.data:GPIO_PORT_TO_BASE)
+                  20000030    00000004     system_msp432p401r.obj (.data)
+
+.bss       0    20000034    00000004     UNINITIALIZED
+                  20000034    00000004     (.common:notchesdetected)
+
+.stack     0    2000fe00    00000200     UNINITIALIZED
+                  2000fe00    00000004     rtsv7M4_T_le_v4SPD16_eabi.lib : boot_cortex_m.c.obj (.stack)
+                  2000fe04    000001fc     --HOLE--
+
+MODULE SUMMARY
+
+       Module                        code   ro data   rw data
+       ------                        ----   -------   -------
+    .\
+       system_msp432p401r.obj        808    0         4      
+       startup_msp432p401r_ccs.obj   18     320       0      
+       gpio_toggle_output.obj        156    0         4      
+    +--+-----------------------------+------+---------+---------+
+       Total:                        982    320       8      
+                                                             
+    C:/Users/zongw/Desktop/msp432_driverlib_3_21_00_05/driverlib/MSP432P4xx/ccs/msp432p4xx_driverlib.lib
+       pcm.o                         1186   0         0      
+       gpio.o                        232    0         48     
+       interrupt.o                   116    64        0      
+       rtc_c.o                       36     0         0      
+       wdt_a.o                       24     0         0      
+       cpu.o                         16     0         0      
+    +--+-----------------------------+------+---------+---------+
+       Total:                        1610   64        48     
+                                                             
+    C:\ti\ccs930\ccs\tools\compiler\ti-cgt-arm_18.12.4.LTS\lib\rtsv7M4_T_le_v4SPD16_eabi.lib
+       memcpy_t2.asm.obj             156    0         0      
+       copy_decompress_lzss.c.obj    104    0         0      
+       autoinit.c.obj                68     0         0      
+       boot_cortex_m.c.obj           52     0         0      
+       copy_zero_init.c.obj          28     0         0      
+       copy_decompress_none.c.obj    14     0         0      
+       exit.c.obj                    4      0         0      
+       pre_init.c.obj                4      0         0      
+    +--+-----------------------------+------+---------+---------+
+       Total:                        430    0         0      
+                                                             
+       Stack:                        0      0         512    
+       Linker Generated:             0      83        0      
+    +--+-----------------------------+------+---------+---------+
+       Grand Total:                  3022   467       568    
+
+
+LINKER GENERATED COPY TABLES
+
+__TI_cinit_table @ 00000da0 records: 2, size/record: 8, table size: 16
+	.data: load addr=00000d58, load size=0000002f bytes, run addr=20000000, run size=00000034 bytes, compression=lzss
+	.bss: load addr=00000d98, load size=00000008 bytes, run addr=20000034, run size=00000004 bytes, compression=zero_init
+
+
+LINKER GENERATED HANDLER TABLE
+
+__TI_handler_table @ 00000d88 records: 3, size/record: 4, table size: 12
+	index: 0, handler: __TI_decompress_lzss
+	index: 1, handler: __TI_decompress_none
+	index: 2, handler: __TI_zero_init
+
+
+GLOBAL SYMBOLS: SORTED ALPHABETICALLY BY Name 
+
+address   name                                
+-------   ----                                
+00000d11  C$$EXIT                             
+00000cdf  CPU_cpsie                           
+00000d09  CPU_wfi                             
+00000c21  GPIO_clearInterruptFlag             
+00000c51  GPIO_enableInterrupt                
+00000add  GPIO_getEnabledInterruptStatus      
+00000ca1  GPIO_getInterruptStatus             
+00000b0d  GPIO_setAsInputPinWithPullUpResistor
+00000bbd  GPIO_setAsOutputPin                 
+00000c65  GPIO_setOutputHighOnPin             
+00000c79  GPIO_toggleOutputOnPin              
+000009b1  Interrupt_enableInterrupt           
+00000cb1  Interrupt_enableMaster              
+00000b3d  PCM_getCoreVoltageLevel             
+00000b69  PCM_getPowerMode                    
+00000ced  PCM_getPowerState                   
+00000b95  PCM_gotoLPM0                        
+000008cd  PCM_gotoLPM3                        
+00000cc1  PCM_gotoLPM4                        
+00000cf9  PCM_setPowerMode                    
+00000d01  PCM_setPowerState                   
+00000a15  PCM_shutdownDevice                  
+000007d1  PORT2_IRQHandler                    
+00000be1  RTC_C_holdClock                     
+20000030  SystemCoreClock                     
+00000141  SystemCoreClockUpdate               
+000003b5  SystemInit                          
+4000480c  WDTCTL_SYM                          
+00000c39  WDT_A_holdTimer                     
+20010000  __STACK_END                         
+00000200  __STACK_SIZE                        
+00000da0  __TI_CINIT_Base                     
+00000db0  __TI_CINIT_Limit                    
+00000d88  __TI_Handler_Table_Base             
+00000d94  __TI_Handler_Table_Limit            
+00000a65  __TI_auto_init_nobinit_nopinit      
+00000949  __TI_decompress_lzss                
+00000cd1  __TI_decompress_none                
+ffffffff  __TI_pprof_out_hndl                 
+ffffffff  __TI_prof_data_size                 
+ffffffff  __TI_prof_data_start                
+00000000  __TI_static_base__                  
+00000c05  __TI_zero_init_nomemset             
+00000831  __aeabi_memcpy                      
+00000831  __aeabi_memcpy4                     
+00000831  __aeabi_memcpy8                     
+ffffffff  __binit__                           
+ffffffff  __c_args__                          
+UNDEFED   __mpu_init                          
+2000fe00  __stack                             
+00000aa9  _c_int00_noargs                     
+UNDEFED   _system_post_cinit                  
+00000d0d  _system_pre_init                    
+00000d11  abort                               
+ffffffff  binit                               
+00000000  interruptVectors                    
+00000795  main                                
+00000831  memcpy                              
+20000034  notchesdetected                     
+
+
+GLOBAL SYMBOLS: SORTED BY Symbol Address 
+
+address   name                                
+-------   ----                                
+00000000  __TI_static_base__                  
+00000000  interruptVectors                    
+00000141  SystemCoreClockUpdate               
+00000200  __STACK_SIZE                        
+000003b5  SystemInit                          
+00000795  main                                
+000007d1  PORT2_IRQHandler                    
+00000831  __aeabi_memcpy                      
+00000831  __aeabi_memcpy4                     
+00000831  __aeabi_memcpy8                     
+00000831  memcpy                              
+000008cd  PCM_gotoLPM3                        
+00000949  __TI_decompress_lzss                
+000009b1  Interrupt_enableInterrupt           
+00000a15  PCM_shutdownDevice                  
+00000a65  __TI_auto_init_nobinit_nopinit      
+00000aa9  _c_int00_noargs                     
+00000add  GPIO_getEnabledInterruptStatus      
+00000b0d  GPIO_setAsInputPinWithPullUpResistor
+00000b3d  PCM_getCoreVoltageLevel             
+00000b69  PCM_getPowerMode                    
+00000b95  PCM_gotoLPM0                        
+00000bbd  GPIO_setAsOutputPin                 
+00000be1  RTC_C_holdClock                     
+00000c05  __TI_zero_init_nomemset             
+00000c21  GPIO_clearInterruptFlag             
+00000c39  WDT_A_holdTimer                     
+00000c51  GPIO_enableInterrupt                
+00000c65  GPIO_setOutputHighOnPin             
+00000c79  GPIO_toggleOutputOnPin              
+00000ca1  GPIO_getInterruptStatus             
+00000cb1  Interrupt_enableMaster              
+00000cc1  PCM_gotoLPM4                        
+00000cd1  __TI_decompress_none                
+00000cdf  CPU_cpsie                           
+00000ced  PCM_getPowerState                   
+00000cf9  PCM_setPowerMode                    
+00000d01  PCM_setPowerState                   
+00000d09  CPU_wfi                             
+00000d0d  _system_pre_init                    
+00000d11  C$$EXIT                             
+00000d11  abort                               
+00000d88  __TI_Handler_Table_Base             
+00000d94  __TI_Handler_Table_Limit            
+00000da0  __TI_CINIT_Base                     
+00000db0  __TI_CINIT_Limit                    
+20000030  SystemCoreClock                     
+20000034  notchesdetected                     
+2000fe00  __stack                             
+20010000  __STACK_END                         
+4000480c  WDTCTL_SYM                          
+ffffffff  __TI_pprof_out_hndl                 
+ffffffff  __TI_prof_data_size                 
+ffffffff  __TI_prof_data_start                
+ffffffff  __binit__                           
+ffffffff  __c_args__                          
+ffffffff  binit                               
+UNDEFED   __mpu_init                          
+UNDEFED   _system_post_cinit                  
+
+[59 symbols]
