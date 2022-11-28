@@ -92,6 +92,7 @@ void initComms(void)
     UART_enableInterrupt(EUSCI_A2_BASE, EUSCI_A_UART_RECEIVE_INTERRUPT);
     Interrupt_enableInterrupt(INT_EUSCIA2);
     Interrupt_enableMaster();
+    Interrupt_setPriority(INT_EUSCIA2, (1 << 5));
 }
 
 void uPrintf(unsigned char * TxArray)
@@ -115,6 +116,7 @@ void EUSCIA2_IRQHandler(void)
 
 {unsigned char key = 0;
 key = UART_receiveData(EUSCI_A2_BASE);
+UART_clearInterruptFlag(EUSCI_A2_BASE,status);
 switch(key)
 {
     case 'S':
